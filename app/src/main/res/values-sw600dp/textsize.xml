@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 統一頁面TEXT SIZE -->
+    <!-- 此項參數在各種機器看到的字型大小依比例縮放  x*1.3-->
+    <dimen name='text_size6_dp'>7.8sp</dimen>
+    <dimen name='text_size8_dp'>10.4sp</dimen>
+    <dimen name='text_size10_dp'>13sp</dimen>
+    <dimen name='text_size12_dp'>15.6sp</dimen>
+    <dimen name='text_size14_dp'>18.2sp</dimen>
+    <dimen name='text_size16_dp'>20.8sp</dimen>
+    <dimen name='text_size18_dp'>23.4sp</dimen>
+    <dimen name='text_size20_dp'>26sp</dimen>
+    <dimen name='text_size22_dp'>28.6sp</dimen>
+    <dimen name='text_size24_dp'>31.2sp</dimen>
+    <dimen name='text_size26_dp'>33.8sp</dimen>
+    <dimen name='text_size28_dp'>36.4sp</dimen>
+    <dimen name='text_size30_dp'>39sp</dimen>
+    <dimen name='text_size40_dp'>52sp</dimen>
+    <dimen name='text_size50_dp'>65sp</dimen>
+    <dimen name='text_size60_dp'>78sp</dimen>
+</resources>

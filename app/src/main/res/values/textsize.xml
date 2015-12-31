@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 統一頁面TEXT SIZE -->
+    <!-- 此項參數在各種機器看到的字型大小都一樣 -->
+    <dimen name='text_size6_sp'>6sp</dimen>
+    <dimen name='text_size8_sp'>8sp</dimen>
+    <dimen name='text_size10_sp'>10sp</dimen>
+    <dimen name='text_size12_sp'>12sp</dimen>
+    <dimen name='text_size14_sp'>14sp</dimen>
+    <dimen name='text_size16_sp'>16sp</dimen>
+    <dimen name='text_size18_sp'>18sp</dimen>
+    <dimen name='text_size20_sp'>20sp</dimen>
+    <dimen name='text_size22_sp'>22sp</dimen>
+    <dimen name='text_size24_sp'>24sp</dimen>
+    <dimen name='text_size26_sp'>26sp</dimen>
+    <dimen name='text_size28_sp'>28sp</dimen>
+    <dimen name='text_size30_sp'>30sp</dimen>
+    <dimen name='text_size40_sp'>40sp</dimen>
+    <dimen name='text_size50_sp'>50sp</dimen>
+    <dimen name='text_size60_sp'>60sp</dimen>
+
+    <!-- 此項參數在各種機器看到的字型大小依比例縮放 -->
+    <dimen name='text_size6_dp'>6sp</dimen>
+    <dimen name='text_size8_dp'>8sp</dimen>
+    <dimen name='text_size10_dp'>10sp</dimen>
+    <dimen name='text_size12_dp'>12sp</dimen>
+    <dimen name='text_size14_dp'>14sp</dimen>
+    <dimen name='text_size16_dp'>16sp</dimen>
+    <dimen name='text_size18_dp'>18sp</dimen>
+    <dimen name='text_size20_dp'>20sp</dimen>
+    <dimen name='text_size22_dp'>22sp</dimen>
+    <dimen name='text_size24_dp'>24sp</dimen>
+    <dimen name='text_size26_dp'>26sp</dimen>
+    <dimen name='text_size28_dp'>28sp</dimen>
+    <dimen name='text_size30_dp'>30sp</dimen>
+    <dimen name='text_size40_dp'>40sp</dimen>
+    <dimen name='text_size50_dp'>50sp</dimen>
+    <dimen name='text_size60_dp'>60sp</dimen>
+</resources>
