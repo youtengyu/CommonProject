@@ -5,11 +5,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<HashMap<String,Object>> aa ;
+    ArrayList<HashMap<String,Object>> bb ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        aa = new ArrayList<>();
+        HashMap<String, Object> sa = new HashMap<String, Object>();
+        sa.put("1","2");
+        sa.put("1","2");
+        sa.put("1","2");
+        aa.add(sa);
+        aa.add(sa);
+
+        bb = new ArrayList<HashMap<String,Object>>(aa);
+
+        Log.e("s","s");
+
     }
 
     @Override
