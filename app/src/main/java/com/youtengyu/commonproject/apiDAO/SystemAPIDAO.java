@@ -1,5 +1,24 @@
 package com.youtengyu.commonproject.apiDAO;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.youtengyu.commonproject.apiDAO.common.DBConnector;
+import com.youtengyu.commonproject.apiDAO.okhttp.OkHttpUtil;
+import com.youtengyu.commonproject.apiDAO.okhttp.OnFailureListener;
+import com.youtengyu.commonproject.apiDAO.okhttp.OnResponseListener;
+import com.youtengyu.commonproject.tools.ToastShow;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.math.RoundingMode;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 /**
  * 系統的API
  * Created by RD2-3 on 2015/7/24.
@@ -151,6 +170,33 @@ public class SystemAPIDAO {
 //        };
 //        RequestDAO.getJsonRequest(context, urlString, DeviceAlertSettingResponListener, null, jsonObject);
 //    }
+    public static void OutletURL(final Context context, final OnResponseListener onResponseListener, final OnFailureListener onFailureListener) {
+        String urlString="http://192.168.20.15:8096/api/CheckVersion";
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("DeviceType", "1");
+            jsonObject.put("AppVersion", "1");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                onFailureListener.onFailure();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("API", "End Login");
+                onResponseListener.onResponse(response);
+            }
+        };
+        Log.e("API", "Start Login");
+        OkHttpUtil.enqueueByJSONObject(urlString, callback, jsonObject);
+    }
 
 
 }
