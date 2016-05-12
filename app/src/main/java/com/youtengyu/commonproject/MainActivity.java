@@ -23,12 +23,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Response;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -71,49 +74,107 @@ public class MainActivity extends AppCompatActivity {
         SystemAPIDAO.OutletURL(this,OutletURLOnResponseListener,onFailureListener);
 
 
+        Log.e("Start","S");
+        String BASE_URL = "http://routeapi.chinacloudsites.cn/";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        LockUnitPreservationList lockUnitPreservationList = retrofit.create(LockUnitPreservationList.class);
 
-        new Thread(new Runnable(){
+//                    Call<Example> call = lockUnitPreservationList.getLockCardInboundListRepObject(
+//                            "1wew2",
+//                            "17",
+//                            "",
+//                            "",
+//                            "2016-05-11 16:27",
+//                            "2016-05-12 16:27",
+//                            "1",
+//                            "192",
+//                            "eZbE91CuG1s:APA91bFLGQG9MBbBqXdY_EiF-qd_sAQlYQZXU_5Tr43wBkAPBlvhfDrtbUTm0uDZzwuN5r-PAfgToXTrUBKDnxOtiztu_XoFUyT-qKR7BW5AA5CIg95qW79GpUdyWjDZTGi419ftp_3i",
+//                            "196",
+//                            "135"
+//                    );
+        HashMap<String,String> pp = new HashMap<String, String>();
+        pp.put("companyCode","ASUS");
+        Call<Example> call = lockUnitPreservationList.getLockCardInboundListRepObject(pp);
+
+//        Example lockCardInboundListRepObjects = call.execute().body();
+
+        call.enqueue(new Callback<Example>() {
             @Override
-            public void run() {
-                // TODO Auto-generated method stub
-
-
-
-                try {
-
-                    Log.e("Start","S");
-                    String BASE_URL = "http://192.168.20.15:8096/";
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(BASE_URL)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    LockUnitPreservationList lockUnitPreservationList = retrofit.create(LockUnitPreservationList.class);
-
-                    Call<Example> call = lockUnitPreservationList.getLockCardInboundListRepObject(
-                            "1wew2",
-                            "17",
-                            "",
-                            "",
-                            "2016-05-11 16:27",
-                            "2016-05-12 16:27",
-                            "1",
-                            "192",
-                            "eZbE91CuG1s:APA91bFLGQG9MBbBqXdY_EiF-qd_sAQlYQZXU_5Tr43wBkAPBlvhfDrtbUTm0uDZzwuN5r-PAfgToXTrUBKDnxOtiztu_XoFUyT-qKR7BW5AA5CIg95qW79GpUdyWjDZTGi419ftp_3i",
-                            "196",
-                            "135"
-                    );
-
-                    Example lockCardInboundListRepObjects = call.execute().body();
-                    Log.e("Size",lockCardInboundListRepObjects.getLockCardInboundListReps().size()+"");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("error",e.toString());
-                }
-                Log.e("End","E");
+            public void onResponse(Call<Example> call, retrofit2.Response<Example> response) {
+                ToastShow.Show(context,"成功");
             }
-        }).start();
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+                ToastShow.Show(context,"失敗");
+            }
+        });
+        Log.e("Size","");
+
+    Log.e("End","E");
+
+
+
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                // TODO Auto-generated method stub
+//
+//
+//
+//                try {
+//
+//                    Log.e("Start","S");
+//                    String BASE_URL = "http://routeapi.chinacloudsites.cn/";
+//                    Retrofit retrofit = new Retrofit.Builder()
+//                            .baseUrl(BASE_URL)
+//                            .addConverterFactory(GsonConverterFactory.create())
+//                            .build();
+//
+//                    LockUnitPreservationList lockUnitPreservationList = retrofit.create(LockUnitPreservationList.class);
+//
+////                    Call<Example> call = lockUnitPreservationList.getLockCardInboundListRepObject(
+////                            "1wew2",
+////                            "17",
+////                            "",
+////                            "",
+////                            "2016-05-11 16:27",
+////                            "2016-05-12 16:27",
+////                            "1",
+////                            "192",
+////                            "eZbE91CuG1s:APA91bFLGQG9MBbBqXdY_EiF-qd_sAQlYQZXU_5Tr43wBkAPBlvhfDrtbUTm0uDZzwuN5r-PAfgToXTrUBKDnxOtiztu_XoFUyT-qKR7BW5AA5CIg95qW79GpUdyWjDZTGi419ftp_3i",
+////                            "196",
+////                            "135"
+////                    );
+//                    HashMap<String,String> pp = new HashMap<String, String>();
+//                    pp.put("companyCode","ASUS");
+//                    Call<Example> call = lockUnitPreservationList.getLockCardInboundListRepObject(pp);
+//
+//                    Example lockCardInboundListRepObjects = call.execute().body();
+//
+//                    call.enqueue(new Callback<Example>() {
+//                        @Override
+//                        public void onResponse(Call<Example> call, retrofit2.Response<Example> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<Example> call, Throwable t) {
+//
+//                        }
+//                    });
+//                    Log.e("Size","");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Log.e("error",e.toString());
+//                }
+//                Log.e("End","E");
+//            }
+//        }).start();
 
 
 
@@ -122,19 +183,21 @@ public class MainActivity extends AppCompatActivity {
     public interface LockUnitPreservationList{
 
         @FormUrlEncoded
-        @POST("api/getLockCardInboundList")
+        @POST("api/GetLinkURL")
         Call<Example> getLockCardInboundListRepObject(
-                @Field("CST_House_ID") String CST_House_ID,
-                @Field("CST_Lock_ID") String CST_Lock_ID,
-                @Field("CST_Gateway_ID") String CST_Gateway_ID,
-                @Field("Last_CST_CardInbound_ID") String Last_CST_CardInbound_ID,
-                @Field("StartDateTime") String StartDateTime,
-                @Field("EndDateTime") String EndDateTime,
-                @Field("OrderBy") String OrderBy,
-                @Field("USR_AccountInfo_ID") String USR_AccountInfo_ID,
-                @Field("DeviceID") String DeviceID,
-                @Field("USR_MemberInfo_ID") String USR_MemberInfo_ID,
-                @Field("USR_AppDeviceInfo_ID") String USR_AppDeviceInfo_ID);
+                @FieldMap Map<String, String> params);
+//        Call<Example> getLockCardInboundListRepObject(
+//                @Field("CST_House_ID") String CST_House_ID,
+//                @Field("CST_Lock_ID") String CST_Lock_ID,
+//                @Field("CST_Gateway_ID") String CST_Gateway_ID,
+//                @Field("Last_CST_CardInbound_ID") String Last_CST_CardInbound_ID,
+//                @Field("StartDateTime") String StartDateTime,
+//                @Field("EndDateTime") String EndDateTime,
+//                @Field("OrderBy") String OrderBy,
+//                @Field("USR_AccountInfo_ID") String USR_AccountInfo_ID,
+//                @Field("DeviceID") String DeviceID,
+//                @Field("USR_MemberInfo_ID") String USR_MemberInfo_ID,
+//                @Field("USR_AppDeviceInfo_ID") String USR_AppDeviceInfo_ID);
 
     }
 

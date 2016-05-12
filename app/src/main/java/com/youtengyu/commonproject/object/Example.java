@@ -1,8 +1,6 @@
 
 package com.youtengyu.commonproject.object;
 
-import java.util.ArrayList;
-import java.util.List;
 //import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,68 +8,47 @@ import com.google.gson.annotations.SerializedName;
 //@Generated("org.jsonschema2pojo")
 public class Example {
 
-    @SerializedName("LockCardInboundListReps")
+    @SerializedName("GetLinkURLRep")
     @Expose
-    private List<LockCardInboundListRep> LockCardInboundListReps = new ArrayList<LockCardInboundListRep>();
-    @SerializedName("IsLive")
+    private GetLinkURLRep GetLinkURLRep;
+    @SerializedName("ErrorMessage")
     @Expose
-    private String IsLive;
-    @SerializedName("ErrorMsg")
-    @Expose
-    private String ErrorMsg;
+    private String ErrorMessage;
 
     /**
      * 
      * @return
-     *     The LockCardInboundListReps
+     *     The GetLinkURLRep
      */
-    public List<LockCardInboundListRep> getLockCardInboundListReps() {
-        return LockCardInboundListReps;
+    public GetLinkURLRep getGetLinkURLRep() {
+        return GetLinkURLRep;
     }
 
     /**
      * 
-     * @param LockCardInboundListReps
-     *     The LockCardInboundListReps
+     * @param GetLinkURLRep
+     *     The GetLinkURLRep
      */
-    public void setLockCardInboundListReps(List<LockCardInboundListRep> LockCardInboundListReps) {
-        this.LockCardInboundListReps = LockCardInboundListReps;
+    public void setGetLinkURLRep(GetLinkURLRep GetLinkURLRep) {
+        this.GetLinkURLRep = GetLinkURLRep;
     }
 
     /**
      * 
      * @return
-     *     The IsLive
+     *     The ErrorMessage
      */
-    public String getIsLive() {
-        return IsLive;
+    public String getErrorMessage() {
+        return ErrorMessage;
     }
 
     /**
      * 
-     * @param IsLive
-     *     The IsLive
+     * @param ErrorMessage
+     *     The ErrorMessage
      */
-    public void setIsLive(String IsLive) {
-        this.IsLive = IsLive;
-    }
-
-    /**
-     * 
-     * @return
-     *     The ErrorMsg
-     */
-    public String getErrorMsg() {
-        return ErrorMsg;
-    }
-
-    /**
-     * 
-     * @param ErrorMsg
-     *     The ErrorMsg
-     */
-    public void setErrorMsg(String ErrorMsg) {
-        this.ErrorMsg = ErrorMsg;
+    public void setErrorMessage(String ErrorMessage) {
+        this.ErrorMessage = ErrorMessage;
     }
 
 }
