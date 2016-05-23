@@ -7,6 +7,8 @@ import com.youtengyu.commonproject.apiDAO.common.DBConnector;
 import com.youtengyu.commonproject.apiDAO.okhttp.OkHttpUtil;
 import com.youtengyu.commonproject.apiDAO.okhttp.OnFailureListener;
 import com.youtengyu.commonproject.apiDAO.okhttp.OnResponseListener;
+import com.youtengyu.commonproject.apiDAO.retrofit.RetrofitUtil;
+import com.youtengyu.commonproject.object.CheckVersionModel;
 import com.youtengyu.commonproject.tools.ToastShow;
 
 import org.json.JSONException;
@@ -14,10 +16,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.math.RoundingMode;
+import java.util.HashMap;
+import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 
 /**
  * 系統的API
@@ -182,21 +189,44 @@ public class SystemAPIDAO {
         }
 
 
-        Callback callback = new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                onFailureListener.onFailure();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.e("API", "End Login");
-                onResponseListener.onResponse(response);
-            }
-        };
-        Log.e("API", "Start Login");
-        OkHttpUtil.enqueueByJSONObject(urlString, callback, jsonObject);
+//        Callback callback = new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                onFailureListener.onFailure();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                Log.e("API", "End Login");
+//                onResponseListener.onResponse(response);
+//            }
+//        };
+//        Log.e("API", "Start Login");
+//        OkHttpUtil.enqueueByJSONObject(urlString, callback, jsonObject);
     }
 
+
+    public static void CheckVersion(Callback callback){
+        LockUnitPreservationList lockUnitPreservationList = RetrofitUtil.getInstance().create(LockUnitPreservationList.class);
+
+        HashMap<String,String> pp = new HashMap<String, String>();
+
+        pp.put("DeviceType", "1");
+        pp.put("AppVersion", "1");
+
+        Call<CheckVersionModel> call = lockUnitPreservationList.getLockCardInboundListRepObject(pp);
+
+        call.enqueue(callback);
+
+    }
+
+    public interface LockUnitPreservationList{
+
+        @FormUrlEncoded
+        @POST("CheckVersion")
+        Call<CheckVersionModel> getLockCardInboundListRepObject(
+                @FieldMap Map<String, String> params);
+
+    }
 
 }

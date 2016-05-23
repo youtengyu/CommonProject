@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.youtengyu.commonproject.apiDAO.SystemAPIDAO;
 import com.youtengyu.commonproject.apiDAO.okhttp.OnFailureListener;
 import com.youtengyu.commonproject.apiDAO.okhttp.OnResponseListener;
+import com.youtengyu.commonproject.object.CheckVersionModel;
 import com.youtengyu.commonproject.object.Example;
 import com.youtengyu.commonproject.object.LockCardInboundListRepObject;
 import com.youtengyu.commonproject.tools.ToastShow;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, retrofit2.Response<Example> response) {
+                Log.e("End","E");
                 ToastShow.Show(context,"成功");
             }
 
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.e("Size","");
 
-    Log.e("End","E");
+
 
 
 
@@ -175,8 +177,8 @@ public class MainActivity extends AppCompatActivity {
 //                Log.e("End","E");
 //            }
 //        }).start();
-
-
+        Log.e("End","SS");
+        SystemAPIDAO.CheckVersion(ss);
 
     }
 
@@ -200,6 +202,19 @@ public class MainActivity extends AppCompatActivity {
 //                @Field("USR_AppDeviceInfo_ID") String USR_AppDeviceInfo_ID);
 
     }
+
+    Callback<CheckVersionModel> ss = new Callback<CheckVersionModel>() {
+        @Override
+        public void onResponse(Call<CheckVersionModel> call, retrofit2.Response<CheckVersionModel> response) {
+            ToastShow.Show(context,"成功"+response.body().getIsMaintain()+"-"+response.body().getIsNeedToUpdateAPPVersion());
+            Log.e("End","SE");
+        }
+
+        @Override
+        public void onFailure(Call<CheckVersionModel> call, Throwable t) {
+            ToastShow.Show(context,"失敗");
+        }
+    };
 
 
     private OnResponseListener OutletURLOnResponseListener = new OnResponseListener() {
