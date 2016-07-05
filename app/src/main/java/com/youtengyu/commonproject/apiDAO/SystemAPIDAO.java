@@ -178,31 +178,33 @@ public class SystemAPIDAO {
 //        RequestDAO.getJsonRequest(context, urlString, DeviceAlertSettingResponListener, null, jsonObject);
 //    }
     public static void OutletURL(final Context context, final OnResponseListener onResponseListener, final OnFailureListener onFailureListener) {
-        String urlString="http://192.168.20.15:8096/api/CheckVersion";
+        String urlString="http://192.168.1.10:8080/JavaServerSample/fff";
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("DeviceType", "1");
-            jsonObject.put("AppVersion", "1");
+            jsonObject.put("user", "1DASD");
+            jsonObject.put("passwd", "1DASD");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-//        Callback callback = new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                onFailureListener.onFailure();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                Log.e("API", "End Login");
-//                onResponseListener.onResponse(response);
-//            }
-//        };
-//        Log.e("API", "Start Login");
-//        OkHttpUtil.enqueueByJSONObject(urlString, callback, jsonObject);
+        okhttp3.Callback callback = new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                Log.e("OutletURL_ERROR",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                Log.e("OutletURL",response.body().string());
+            }
+
+
+        };
+        Log.e("API", "Start Login");
+        String ff = String.valueOf(jsonObject);
+        OkHttpUtil.enqueueByJSONObject(urlString, callback, jsonObject);
     }
 
 
